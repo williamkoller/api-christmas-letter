@@ -10,6 +10,8 @@ import { UpdateUserRepository } from '@/modules/user/repositories/update-user/up
 import { LoadUserByIdRepository } from '@/modules/user/repositories/load-user-by-id/load-user-by-id.repository';
 import { Hasher } from '@/infra/cryptography/hasher/hasher';
 import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
+import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
+import { UserController } from '@/modules/user/controllers/user.controller';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
       UpdateUserRepository,
     ]),
   ],
-  providers: [AddUserRepository, Hasher, HashComparer],
+  providers: [AddUserRepository, Hasher, HashComparer, AddUserService],
+  controllers: [UserController],
 })
 export class UserModule {}
