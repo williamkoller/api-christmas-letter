@@ -3,7 +3,6 @@ import { User } from '@/infra/database/entities/user/user.entity';
 import { AddUserDto } from '@/modules/user/dtos/add-user/add-user.dto';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { validateOrReject } from 'class-validator';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -21,7 +20,6 @@ export class AddUserRepository {
       password: await this.hasher.hash(password),
     });
 
-    validateOrReject(newUser);
     return await this.addUserRepository.save(newUser);
   }
 }
