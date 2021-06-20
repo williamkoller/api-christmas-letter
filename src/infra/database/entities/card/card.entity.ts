@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../base-entity/base.entity';
 import { User } from '../user/user.entity';
 
@@ -16,9 +16,7 @@ export class Card extends BaseEntity {
   @Column('date')
   date: Date;
 
-  @Column({ type: 'varchar', nullable: false })
-  @ManyToOne(() => User, (user) => user.cards, { cascade: true })
-  @JoinTable()
+  @ManyToOne(() => User, (user) => user.cards)
   user: User;
 
   constructor(partial: Partial<Card>) {
