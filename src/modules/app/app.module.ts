@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from '@/modules/user/user.module';
 import { CoreModule } from '@/modules/core/core.module';
 import { AuthModule } from '@/modules/auth/auth.module';
-import { CardsModule } from '@/modules/cards/cards.module';
+import { CardModule } from '@/modules/card/card.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { CardsModule } from '@/modules/cards/cards.module';
     forwardRef(() => UserModule),
     forwardRef(() => CoreModule),
     forwardRef(() => AuthModule),
-    forwardRef(() => CardsModule),
+    forwardRef(() => CardModule),
   ],
   controllers: [],
   providers: [],
