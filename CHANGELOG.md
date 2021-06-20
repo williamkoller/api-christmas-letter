@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 - Add jwt and passort for auth
 - Add service and controller for auth
 - Add jwt strategy
+- Add Card module
+- Add CRUD in Card Module
 
 ## Release [v 1.0.0] - 06/19/2021
 
