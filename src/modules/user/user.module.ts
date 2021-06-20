@@ -14,6 +14,8 @@ import { AddUserService } from '@/modules/user/services/add-user/add-user.servic
 import { UserController } from '@/modules/user/controllers/user.controller';
 import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/load-user-by-id.service';
 import { DeleteUserService } from '@/modules/user/services/delete-user/delete-user.service';
+import { UpdateUserService } from '@/modules/user/services/update-user/update-user.service';
+import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load-all-users.service';
 
 @Module({
   imports: [
@@ -32,7 +34,9 @@ import { DeleteUserService } from '@/modules/user/services/delete-user/delete-us
     Hasher,
     HashComparer,
     AddUserService,
+    UpdateUserService,
     LoadUserByIdService,
+    LoadAllUsersService,
     DeleteUserService,
   ],
   controllers: [UserController],
