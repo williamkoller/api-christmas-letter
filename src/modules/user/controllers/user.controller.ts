@@ -1,14 +1,39 @@
 import { User } from '@/infra/database/entities/user/user.entity';
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Message } from '@/utils/types/message/message.type';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AddUserDto } from '../dtos/add-user/add-user.dto';
-import { AddUserService } from '../services/add-user/add-user.service';
+import { AddUserDto } from '@/modules/user/dtos/add-user/add-user.dto';
+import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
+import { UpdateUserDto } from '@/modules/user/dtos/update-user/update-user.dto';
+import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
+import { DeleteUserService } from '@/modules/user/services/delete-user/delete-user.service';
+import { UpdateUserService } from '@/modules/user/services/update-user/update-user.service';
+import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load-all-users.service';
+import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/load-user-by-id.service';
+import { ValidationParamsPipe } from '@/common/pipes/validation-params.pipe';
 
 @ApiTags('user')
 @ApiBearerAuth()
 @Controller('user')
 export class UserController {
-  constructor(private readonly addUserService: AddUserService) {}
+  constructor(
+    private readonly addUserService: AddUserService,
+    private readonly deleteUserService: DeleteUserService,
+    private readonly updateUserService: UpdateUserService,
+    private readonly loadAllUsersService: LoadAllUsersService,
+    private readonly loadUserByIdService: LoadUserByIdService,
+  ) {}
 
   @ApiResponse({
     status: HttpStatus.CONFLICT,
@@ -28,5 +53,85 @@ export class UserController {
       email,
       password,
     });
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User deleted with successfully.',
+  })
+  @Delete('/delete/:id')
+  async delete(
+    @Param('id', ValidationParamsPipe, ParseUUIDPipe) id: string,
+  ): Promise<Message> {
+    return await this.deleteUserService.deleteUser({ id });
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User updated with successfully.',
+  })
+  @Put('/update/:id')
+  async updateUser(
+    @Param('id', ValidationParamsPipe, ParseUUIDPipe) id: string,
+    @Body() { name, surname, email }: UpdateUserDto,
+  ): Promise<Message> {
+    return await this.updateUserService.updateUser({
+      id,
+      name,
+      surname,
+      email,
+    });
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User updated with successfully.',
+  })
+  @Put('/update-password/:id')
+  async updatePassword(
+    @Param('id', ValidationParamsPipe, ParseUUIDPipe) id: string,
+    @Body() { password }: UpdateUserDto,
+  ): Promise<Message> {
+    return await this.updateUserService.updatePassword({ id, password });
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'No record found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Load all users.',
+  })
+  @Get('/load-all')
+  async loadAll(): Promise<User[]> {
+    return this.loadAllUsersService.loadAll();
+  }
+
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Load user by id.',
+  })
+  @Get('/load-user-by-id/:id')
+  async loadById(
+    @Param('id', ValidationParamsPipe, ParseUUIDPipe) id: string,
+  ): Promise<User> {
+    return await this.loadUserByIdService.loadById({ id });
   }
 }
