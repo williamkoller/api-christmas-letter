@@ -16,6 +16,7 @@ export class AddCardService {
     description,
     destiny,
     date,
+    userId,
   }: AddCardDto): Promise<Card> {
     const cardExists = await this.loadCardByTitleRepository.loadByTitle({
       title,
@@ -30,6 +31,7 @@ export class AddCardService {
       description,
       destiny,
       date,
+      userId,
     });
   }
 }

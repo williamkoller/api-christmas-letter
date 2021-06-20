@@ -4,8 +4,20 @@ import { AddCardDto } from '@/modules/card/dtos/add-card/add-card.dto';
 
 @EntityRepository(Card)
 export class AddCardRepository extends Repository<Card> {
-  async add({ title, description, destiny, date }: AddCardDto): Promise<Card> {
-    const newCard = this.create({ title, description, destiny, date });
+  async add({
+    title,
+    description,
+    destiny,
+    date,
+    userId,
+  }: AddCardDto): Promise<Card> {
+    const newCard = this.create({
+      title,
+      description,
+      destiny,
+      date,
+      user: userId,
+    });
     return await this.save(newCard);
   }
 }

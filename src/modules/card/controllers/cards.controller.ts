@@ -1,5 +1,6 @@
 import { Card } from '@/infra/database/entities/card/card.entity';
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
+import { Body, Controller, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddCardDto } from '../dtos/add-card/add-card.dto';
 import { AddCardService } from '../services/add-card/add-card.service';
@@ -18,15 +19,17 @@ export class CardsController {
     status: HttpStatus.OK,
     description: 'Add new card.',
   })
+  @UseGuards(JwtAuthGuard)
   @Post('/add-card')
   async add(
-    @Body() { title, description, destiny, date }: AddCardDto,
+    @Body() { title, description, destiny, date, userId }: AddCardDto,
   ): Promise<Card> {
     return await this.AddCardService.addCard({
       title,
       description,
       destiny,
       date,
+      userId,
     });
   }
 }

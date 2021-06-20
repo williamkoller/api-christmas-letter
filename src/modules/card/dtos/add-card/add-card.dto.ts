@@ -1,4 +1,5 @@
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { User } from '@/infra/database/entities/user/user.entity';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class AddCardDto {
   @IsString()
@@ -13,7 +14,11 @@ export class AddCardDto {
   @IsNotEmpty()
   destiny: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   date: Date;
+
+  @IsString()
+  @IsNotEmpty()
+  userId: User;
 }
