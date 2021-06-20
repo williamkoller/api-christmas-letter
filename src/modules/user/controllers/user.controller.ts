@@ -10,11 +10,9 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddUserDto } from '@/modules/user/dtos/add-user/add-user.dto';
-import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
 import { UpdateUserDto } from '@/modules/user/dtos/update-user/update-user.dto';
 import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
 import { DeleteUserService } from '@/modules/user/services/delete-user/delete-user.service';
@@ -24,7 +22,6 @@ import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/loa
 import { ValidationParamsPipe } from '@/common/pipes/validation-params.pipe';
 
 @ApiTags('user')
-@ApiBearerAuth()
 @Controller('user')
 export class UserController {
   constructor(
@@ -55,6 +52,7 @@ export class UserController {
     });
   }
 
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'User not found.',
@@ -70,6 +68,7 @@ export class UserController {
     return await this.deleteUserService.deleteUser({ id });
   }
 
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'User not found.',
@@ -91,6 +90,7 @@ export class UserController {
     });
   }
 
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'User not found.',
@@ -107,6 +107,7 @@ export class UserController {
     return await this.updateUserService.updatePassword({ id, password });
   }
 
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'No record found.',
@@ -120,6 +121,7 @@ export class UserController {
     return this.loadAllUsersService.loadAll();
   }
 
+  @ApiBearerAuth()
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'User not found.',

@@ -16,6 +16,8 @@ import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/loa
 import { DeleteUserService } from '@/modules/user/services/delete-user/delete-user.service';
 import { UpdateUserService } from '@/modules/user/services/update-user/update-user.service';
 import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load-all-users.service';
+import { LoadUserIdToAuthService } from '@/modules/user/services/load-user-auth-by-id/load-user-auth-by-id.service';
+import { LoadUserProfileService } from '@/modules/user/services/load-user-profile/load-user-profile.service';
 
 @Module({
   imports: [
@@ -38,6 +40,8 @@ import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load
     LoadUserByIdService,
     LoadAllUsersService,
     DeleteUserService,
+    LoadUserIdToAuthService,
+    LoadUserProfileService,
   ],
   controllers: [UserController],
 })
