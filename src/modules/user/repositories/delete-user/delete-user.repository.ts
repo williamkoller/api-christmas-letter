@@ -5,10 +5,7 @@ import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
 
 @EntityRepository(User)
 export class DeleteUserRepository extends Repository<User> {
-  async deleteUser({ id }: LoadByIdDto): Promise<Message> {
+  async deleteUser({ id }: LoadByIdDto): Promise<void> {
     await this.delete(id);
-    return {
-      message: 'User deleted with successfully.',
-    };
   }
 }
