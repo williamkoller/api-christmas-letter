@@ -5,13 +5,7 @@ import { UpdateUserDto } from '@/modules/user/dtos/update-user/update-user.dto';
 
 @EntityRepository(User)
 export class UpdateUserRepository extends Repository<User> {
-  async updateUser({
-    id,
-    name,
-    surname,
-    email,
-    password,
-  }: UpdateUserDto): Promise<void> {
-    await this.update(id, { name, surname, email, password });
+  async updateUser({ id, name, surname, email }: UpdateUserDto): Promise<void> {
+    await this.update(id, { name, surname, email });
   }
 }
