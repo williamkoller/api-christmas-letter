@@ -11,10 +11,7 @@ export class UpdateUserRepository extends Repository<User> {
     surname,
     email,
     password,
-  }: UpdateUserDto): Promise<Message> {
+  }: UpdateUserDto): Promise<void> {
     await this.update(id, { name, surname, email, password });
-    return {
-      message: 'User updated with successfully.',
-    };
   }
 }
