@@ -18,11 +18,13 @@ import { UpdateUserService } from '@/modules/user/services/update-user/update-us
 import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load-all-users.service';
 import { LoadUserIdToAuthService } from '@/modules/user/services/load-user-auth-by-id/load-user-auth-by-id.service';
 import { LoadUserProfileService } from '@/modules/user/services/load-user-profile/load-user-profile.service';
+import { Card } from '@/infra/database/entities/card/card.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       User,
+      Card,
       LoadAllUsersRepository,
       LoadUserByEmailRepository,
       LoadUserByNameRepository,

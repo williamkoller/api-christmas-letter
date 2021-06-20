@@ -1,5 +1,6 @@
 import { BaseEntity } from '../base-entity/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinTable, OneToMany } from 'typeorm';
+import { Card } from '../card/card.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -14,6 +15,10 @@ export class User extends BaseEntity {
 
   @Column('varchar')
   password: string;
+
+  @OneToMany(() => Card, (card) => card.user, { eager: true })
+  @JoinTable()
+  cards: Card[];
 
   constructor(partial: Partial<User>) {
     super();
