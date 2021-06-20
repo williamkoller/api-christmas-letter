@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- Add auth module
+- Add jwt and passort for auth
+- Add service and controller for auth
+- Add jwt strategy
 
 ## Release [v 1.0.0] - 06/19/2021
 
