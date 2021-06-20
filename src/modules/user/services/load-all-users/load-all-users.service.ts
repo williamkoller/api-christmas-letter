@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { LoadAllUsersRepository } from '@/modules/user/repositories/load-all-users/load-all-users.repository';
 import { User } from '@/infra/database/entities/user/user.entity';
 
@@ -9,12 +13,16 @@ export class LoadAllUsersService {
   ) {}
 
   async loadAll(): Promise<User[]> {
-    const users = await this.loadAllUsersRepository.loadAll();
+    try {
+      const users = await this.loadAllUsersRepository.loadAll();
 
-    if (!users.length) {
-      throw new NotFoundException('No records found.');
+      if (!users.length) {
+        throw new NotFoundException('No records found.');
+      }
+
+      return users;
+    } catch (e) {
+      throw new BadRequestException(e.message);
     }
-
-    return users;
   }
 }
