@@ -11,7 +11,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthUserDto } from '../dtos/auth-user/auth-user.dto';
 import { UserTokenInputType } from '../dtos/user-token-input/user-token-input.type';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
@@ -34,7 +34,6 @@ export class AuthController {
     status: 401,
     description: 'Unauthorized',
   })
-  @ApiBody({ type: AuthUserDto })
   @Post('login')
   async login(
     @Body() { email, password }: AuthUserDto,
@@ -51,7 +50,6 @@ export class AuthController {
     status: 401,
     description: 'Unauthorized',
   })
-  @ApiBody({ type: AuthUserDto })
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('view-profile')
