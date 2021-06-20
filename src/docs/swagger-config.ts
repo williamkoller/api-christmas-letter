@@ -6,7 +6,7 @@ export const swaggerConfig = (app: NestExpressApplication): void => {
     .setTitle('Christmas Letter Example')
     .setDescription('The Christmas Letter API description')
     .setVersion('0.0.1')
-    .addTag('users')
+    .addTag('user')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
