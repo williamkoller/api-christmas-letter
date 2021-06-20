@@ -1,5 +1,5 @@
 import { Message } from '@/utils/types/message/message.type';
-import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/utils/dtos/load-by-id/load-by-id.dto';
 import { DeleteUserRepository } from '@/modules/user/repositories/delete-user/delete-user.repository';
 import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/load-user-by-id.service';
 import { Injectable } from '@nestjs/common';

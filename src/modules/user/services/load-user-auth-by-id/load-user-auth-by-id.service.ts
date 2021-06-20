@@ -1,6 +1,6 @@
 import { User } from '@/infra/database/entities/user/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/utils/dtos/load-by-id/load-by-id.dto';
 import { LoadUserByIdRepository } from '@/modules/user/repositories/load-user-by-id/load-user-by-id.repository';
 
 @Injectable()

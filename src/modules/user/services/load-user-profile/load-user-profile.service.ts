@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserProfileType } from '@/modules/user/types/user-profile/user-profile.type';
-import { LoadByIdDto } from '@/modules/user/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/utils/dtos/load-by-id/load-by-id.dto';
 import { LoadUserByIdRepository } from '@/modules/user/repositories/load-user-by-id/load-user-by-id.repository';
 
 @Injectable()
