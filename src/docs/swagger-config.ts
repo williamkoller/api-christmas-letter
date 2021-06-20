@@ -8,7 +8,7 @@ export const swaggerConfig = (app: NestExpressApplication): void => {
     .setVersion('0.0.1')
     .addTag('user')
     .addTag('auth')
-    .addTag('cards')
+    .addTag('card')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);

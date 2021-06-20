@@ -16,6 +16,7 @@ export class Card extends BaseEntity {
   @Column('date')
   date: Date;
 
+  @Column({ type: 'varchar', nullable: false })
   @ManyToOne(() => User, (user) => user.cards, { cascade: true })
   @JoinTable()
   user: User;

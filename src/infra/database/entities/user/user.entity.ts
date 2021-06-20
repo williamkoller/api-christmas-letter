@@ -16,6 +16,7 @@ export class User extends BaseEntity {
   @Column('varchar')
   password: string;
 
+  @Column({ type: 'simple-array', array: true })
   @OneToMany(() => Card, (card) => card.user, { eager: true })
   @JoinTable()
   cards: Card[];

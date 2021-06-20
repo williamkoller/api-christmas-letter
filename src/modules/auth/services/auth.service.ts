@@ -1,7 +1,11 @@
 import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
 import { User } from '@/infra/database/entities/user/user.entity';
 import { LoadUserByEmailRepository } from '@/modules/user/repositories/load-user-by-email/load-user-by-email.repository';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AuthUserDto } from '../dtos/auth-user/auth-user.dto';
 import { UserTokenInputType } from '../dtos/user-token-input/user-token-input.type';
 import { JwtService } from '@nestjs/jwt';
@@ -18,27 +22,31 @@ export class AuthService {
     email,
     password,
   }: AuthUserDto): Promise<UserTokenInputType> {
-    const user = await this.loadUserByEmailRepository.loadByEmail({ email });
+    try {
+      const user = await this.loadUserByEmailRepository.loadByEmail({ email });
 
-    if (!user) {
-      throw new UnauthorizedException();
+      if (!user) {
+        throw new UnauthorizedException();
+      }
+
+      const passwordIsMatch = await this.hashComparer.comparer(
+        password,
+        user.password,
+      );
+
+      if (!passwordIsMatch) {
+        throw new UnauthorizedException('Incorrect password or email.');
+      }
+
+      delete user.password;
+
+      return {
+        user,
+        token: await this.generateToken(user),
+      };
+    } catch (e) {
+      throw new BadRequestException(e.message);
     }
-
-    const passwordIsMatch = await this.hashComparer.comparer(
-      password,
-      user.password,
-    );
-
-    if (!passwordIsMatch) {
-      throw new UnauthorizedException('Incorrect password or email.');
-    }
-
-    delete user.password;
-
-    return {
-      user,
-      token: await this.generateToken(user),
-    };
   }
 
   async generateToken(user: User): Promise<string> {
