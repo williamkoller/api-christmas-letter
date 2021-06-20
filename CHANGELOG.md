@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## Release [v x.x.x] - xxxx-xx-xx
+## Release [v 1.0.0] - 06/19/2021
 
 ### Added
 - Add husky, lintstaged and configs
@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Add configService with configs TypeOrm
 - Add Configs of timeout, logging and transform data
 - Add setup database
+- Add User module
+- Add CRUD in repository, service and controller
+- Add ValidationParamsPipe validate request data cannot be empty
 
 ### Changed
 
