@@ -3,6 +3,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from '@/modules/user/user.module';
+import { CoreModule } from '@/modules/core/core.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { UserModule } from '@/modules/user/user.module';
     }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()[0]),
     forwardRef(() => UserModule),
+    forwardRef(() => CoreModule),
   ],
   controllers: [],
   providers: [],

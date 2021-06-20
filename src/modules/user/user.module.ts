@@ -12,6 +12,8 @@ import { Hasher } from '@/infra/cryptography/hasher/hasher';
 import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
 import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
 import { UserController } from '@/modules/user/controllers/user.controller';
+import { LoadUserByIdService } from '@/modules/user/services/load-user-by-id/load-user-by-id.service';
+import { DeleteUserService } from '@/modules/user/services/delete-user/delete-user.service';
 
 @Module({
   imports: [
@@ -25,7 +27,14 @@ import { UserController } from '@/modules/user/controllers/user.controller';
       UpdateUserRepository,
     ]),
   ],
-  providers: [AddUserRepository, Hasher, HashComparer, AddUserService],
+  providers: [
+    AddUserRepository,
+    Hasher,
+    HashComparer,
+    AddUserService,
+    LoadUserByIdService,
+    DeleteUserService,
+  ],
   controllers: [UserController],
 })
 export class UserModule {}
