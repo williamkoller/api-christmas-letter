@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## Release [v 2.0.1] - 06/21/2021
+
+### Added
+
+### Changed
+- Add ApiProperty in dtos of CardModule
+
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Security
+
 ## Release [v 2.0.0] - 06/21/2021
 
 ### Added
