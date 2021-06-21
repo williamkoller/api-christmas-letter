@@ -11,6 +11,7 @@ import { AddCardService } from '@/modules/card/services/add-card/add-card.servic
 import { LoadCardByIdService } from '@/modules/card/services/load-card-by-id/load-card-by-id.service';
 import { DeleteCardService } from '@/modules/card/services/delete-card/delete-card.service';
 import { CardsController } from '@/modules/card/controllers/cards.controller';
+import { LoadAllCardsService } from '@/modules/card/services/load-all-cards/load-all-cards.service';
 
 @Module({
   imports: [
@@ -24,7 +25,12 @@ import { CardsController } from '@/modules/card/controllers/cards.controller';
       LoadCardByTitleRepository,
     ]),
   ],
-  providers: [AddCardService, LoadCardByIdService, DeleteCardService],
+  providers: [
+    AddCardService,
+    LoadCardByIdService,
+    DeleteCardService,
+    LoadAllCardsService,
+  ],
   controllers: [CardsController],
 })
 export class CardModule {}
