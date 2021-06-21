@@ -18,12 +18,12 @@ export class AddCardDto {
   @IsNotEmpty()
   destiny: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: '06/21/2021' })
   @IsString()
   @IsNotEmpty()
   date: Date;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'e6b09b95-312f-45e5-9cdd-a1d0e1a7e701' })
   @IsString()
   @IsNotEmpty()
   userId: User;
