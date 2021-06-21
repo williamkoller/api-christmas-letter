@@ -2,7 +2,7 @@
   "name": "api-christmas-letter",
   "version": "2.0.1",
   "description": "API Christmas Letter",
-  "author": "William Koller",
+  "author": "William Koller <wkoller25@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
