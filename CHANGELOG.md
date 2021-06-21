@@ -3,12 +3,27 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## Release [v 2.0.0] - 06/21/2021
+
+### Added
 - Add auth module
 - Add jwt and passort for auth
 - Add service and controller for auth
 - Add jwt strategy
 - Add Card module
 - Add CRUD in Card Module
+- Add Procfile deploy heroku
+
+### Changed
+
+### Deprecated
+
+### Fixed
+
+### Removed
+
+### Security
 
 ## Release [v 1.0.0] - 06/19/2021
 
