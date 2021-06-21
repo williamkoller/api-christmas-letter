@@ -1,8 +1,8 @@
 {
   "name": "api-christmas-letter",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
+  "version": "2.0.0",
+  "description": "API Christmas Letter",
+  "author": "William Koller",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
