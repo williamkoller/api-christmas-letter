@@ -2,3 +2,11 @@
 
 # API Christmas Letter
 
+A new project configured to be able to use TypeORM with PostgreSQL
+
+Steps to follow to work on this template:
+
+ 1. Clone this repository
+ 2. Install all dependencies `yarn`
+ 3. Make a copy of the `.env.example` file to `.env`
+ 4. Do a local test with local server `yarn serve` so you can see that everything is fine.
