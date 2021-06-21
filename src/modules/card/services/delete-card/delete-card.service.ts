@@ -14,7 +14,7 @@ export class DeleteCardService {
     try {
       const { id: cardId } = await this.loadCardByIdService.loadById({ id });
 
-      await this.deleteCardRepository.deleteCard({ id: cardId });
+      await this.deleteCardRepository.deleteCard(cardId);
 
       return {
         message: 'Card deleted with successfully.',

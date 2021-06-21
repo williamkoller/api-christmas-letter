@@ -4,7 +4,7 @@ import { EntityRepository, Repository } from 'typeorm';
 
 @EntityRepository(Card)
 export class DeleteCardRepository extends Repository<Card> {
-  async deleteCard({ id }: LoadByIdDto): Promise<void> {
+  async deleteCard(id: string): Promise<void> {
     await this.delete(id);
   }
 }
